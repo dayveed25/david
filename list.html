@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> To-Do List </title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+	<style>
+        li {
+            list-style: none;
+            }
+        #complete li {
+            text-decoration: line-through;
+                    }
+	</style>
+</head>
+<body>
+<input type="text" id="newTask">
+<input type="button" onclick="add()" value="Add">
+
+<h2> Added Task </h2>
+<ul id="list">
+
+</ul>
+<input type="button" onclick="remove()" value="remove">
+
+<h2> Completed Task </h2>
+<ul id="complete">
+
+</ul>
+
+
+
+<script type="text/javascript">
+
+function add() {
+   
+	var text = document.getElementById("newTask").value;
+	           if (text=='') {
+	             	return false;
+	           }
+	           document.getElementById("list").innerHTML += '<li class="animated bounceInDown"><input type="checkbox" value="'+text+'">'+text+'</input></li>';
+	           document.getElementById("newTask").value = '';
+	          //$('#list').append('<li><input type="checkbox">'+text+'</li>');
+}
+
+function remove() {
+	 var list = document.getElementById("list").childNodes;
+	// console.log(list);
+     for (var i = 1; i < list.length; i++) {
+
+     	if(list[i].childNodes[0].checked){
+     	  // console.log(this);
+     	   
+            document.getElementById("complete").innerHTML += '<li class="animated fadeInDown"><input type="checkbox" checked>'+list[i].childNodes[0].value+'</li>';
+
+            list[i].parentElement.removeChild(list[i]);
+     	}
+     }
+	
+
+}
+	
+
+
+</script>
+</body>
+</html>
